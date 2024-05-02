@@ -22,7 +22,7 @@ interface CartWidgetProps {
 export const CartWidget = ({ restaurant }: CartWidgetProps) => {
   const { products, totalPrice, totalQuantity } = useContext(CartContext);
 
-  const restaurantHasProductsOnCart = products.filter(
+  const restaurantHasProductsOnCart = products.some(
     (product) => product.restaurantId === restaurant.id,
   );
 
