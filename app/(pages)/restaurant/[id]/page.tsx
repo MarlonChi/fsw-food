@@ -6,6 +6,7 @@ import Image from "next/image";
 import { StarIcon } from "lucide-react";
 import DeliveryInfo from "@/app/_components/delivery-info";
 import ProductList from "@/app/_components/product-list";
+import { CartWidget } from "./components/cart-widget";
 
 interface RestaurantPageProps {
   params: {
@@ -47,8 +48,6 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
       },
     },
   });
-
-  console.log(restaurant);
 
   if (!restaurant) {
     return notFound();
@@ -103,6 +102,8 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
           <ProductList products={category.products} />
         </div>
       ))}
+
+      <CartWidget restaurant={restaurant} />
     </div>
   );
 };
