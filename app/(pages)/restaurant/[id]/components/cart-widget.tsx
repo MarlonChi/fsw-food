@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Restaurant } from "@prisma/client";
 
 import {
@@ -20,6 +20,7 @@ interface CartWidgetProps {
 }
 
 export const CartWidget = ({ restaurant }: CartWidgetProps) => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { products, totalPrice, totalQuantity } = useContext(CartContext);
 
   const restaurantHasProductsOnCart = products.some(
@@ -44,16 +45,16 @@ export const CartWidget = ({ restaurant }: CartWidgetProps) => {
           </h3>
         </div>
 
-        <Sheet>
+        <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
           <SheetTrigger>
-            <Button>Ver sacola</Button>
+            <Button onClick={() => setIsCartOpen(true)}>Ver sacola</Button>
           </SheetTrigger>
           <SheetContent className="w-[90vw]">
             <SheetHeader>
               <SheetTitle className="text-left">Sacola</SheetTitle>
             </SheetHeader>
 
-            <Cart />
+            <Cart setIsOpen={setIsCartOpen} />
           </SheetContent>
         </Sheet>
       </div>

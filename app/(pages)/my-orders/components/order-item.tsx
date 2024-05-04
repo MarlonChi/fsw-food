@@ -1,17 +1,16 @@
 "use client";
 
-import { useContext } from "react";
-import { ChevronRightIcon } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { OrderStatus, Prisma } from "@prisma/client";
-
 import { Avatar, AvatarImage } from "@/app/_components/ui/avatar";
 import { Button } from "@/app/_components/ui/button";
 import { Card, CardContent } from "@/app/_components/ui/card";
 import { Separator } from "@/app/_components/ui/separator";
 import { CartContext } from "@/app/_context/cart";
 import { formatCurrency } from "@/app/_helpers/price";
+import { OrderStatus, Prisma } from "@prisma/client";
+import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -49,8 +48,11 @@ const OrderItem = ({ order }: OrderItemProps) => {
   const handleRedoOrderClick = () => {
     for (const orderProduct of order.products) {
       addProductToCart({
-        product: { ...orderProduct.product, restaurant: order.restaurant },
-        quantity: orderProduct.quantity,
+        product: {
+          ...orderProduct.product,
+          restaurant: order.restaurant,
+          quantity: orderProduct.quantity,
+        },
       });
     }
 
