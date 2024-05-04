@@ -11,6 +11,6 @@ Essa aplicação foi desenvolvida durante o evento Full Stack Week do dicasparad
 ## Imagens
 
 Página do produto
-<p align="center">
-  <img src=".github/image2.png" width="100%">
+<p>
+  <img src=".github/image2.png">
 </p>
